@@ -62,7 +62,7 @@ class Bridge:
         self._ip = bridge_ip
         self._username = username
         if bridge_ip and username is not None:
-            self._bridge_url = f"http://{self._ip}/api"
+            self._bridge_url = f"https://{self._ip}/api"
             self._username_url = self._bridge_url + "/" + self._username
 
     @staticmethod
@@ -116,7 +116,7 @@ class Bridge:
             ) from err
         self._ip = bridge_ip
         # set up hue bridge address path
-        self._bridge_url = f"http://{self._ip}/api"
+        self._bridge_url = f"https://{self._ip}/api"
         return self._ip
 
     def register_username(self) -> str:
@@ -124,7 +124,7 @@ class Bridge:
         Provides a 30 second delay to press the link button on the bridge.
         Returns username or None.
         """
-        self._bridge_url = f"http://{self._ip}/api"
+        self._bridge_url = f"https://{self._ip}/api"
         data = {"devicetype": f"CircuitPython#pyportal{randint(0, 100)}"}
         resp = self._wifi.post(self._bridge_url, json=data)
         connection_attempts = 1
